@@ -3,18 +3,19 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import reducers from "./reducers";
 import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 function configureStore() {
+  const composeEnhancers = composeWithDevTools({});
+
   const enhancers = [
     applyMiddleware(thunkMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ];
 
-  const composedEnhancers = compose(...enhancers);
+  const composedEnhancers: any = composeEnhancers(...enhancers);
 
-  const store = createStore(reducers, undefined, composedEnhancers);
-  
-  return store;
+  return createStore(reducers, undefined, composedEnhancers);
 }
 
 export default function storeHoc(Children) {

@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./styles/main.scss";
-import { compose } from "redux";
 import storeHoc from "./store/Store.hoc";
 import MainPage from "./pages/Main.page";
 
