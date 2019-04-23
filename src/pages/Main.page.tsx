@@ -28,6 +28,6 @@ const mapStateToProps = ({ testReducer }: { testReducer: ITestReducer }) => {
   return {
     value: testReducer.value
   };
-}
+};
 
 export default connect(mapStateToProps)(MainPage)
