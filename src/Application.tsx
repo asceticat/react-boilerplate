@@ -1,14 +1,17 @@
 import * as React from "react";
-import "./styles/main.scss";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import storeHoc from "./store/Store.hoc";
-import MainPage from "./pages/Main.page";
+import AppRouter from "./router/RoutesCollection";
+import "./styles/main.scss";
 
 function Application() {
   return (
     <div>
-      <MainPage></MainPage>
+      <Router >
+        <AppRouter />
+      </Router>
     </div>
-  )
+  );
 }
 
 export default storeHoc(Application);

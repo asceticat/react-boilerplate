@@ -1,16 +1,16 @@
 import * as React from "react";
-import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import reducers from "./reducers";
-import thunkMiddleware from "redux-thunk";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import thunkMiddleware from "redux-thunk";
+import reducers from "./reducers";
 
 function configureStore() {
   const composeEnhancers = composeWithDevTools({});
 
   const enhancers = [
     applyMiddleware(thunkMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ];
 
   const composedEnhancers: any = composeEnhancers(...enhancers);
@@ -19,11 +19,11 @@ function configureStore() {
 }
 
 export default function storeHoc(Children) {
-  return function(props) {
+  return (props) => {
     return (
       <Provider store={configureStore()}>
         <Children {...props} />
       </Provider>
-    )
-  }
+    );
+  };
 }
